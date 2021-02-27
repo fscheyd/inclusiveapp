@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :businesses do
     resources :reviews, only: [:index, :new, :create]
   end
+
+  resources :users do
+    resources :reviews, only: [:index, :new, :create, :destroy]
 end
   
   
