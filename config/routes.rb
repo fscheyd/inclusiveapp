@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :reviews, only: [:index, :new, :create, :destroy]
+    resources :reviews, only: [:index, :new, :create, :edit, :destroy]
+
+  end
+
 end
   
   
