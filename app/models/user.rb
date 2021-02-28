@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_many :reveiws
   has_many :businesses, through :reviews
-  before_validation :downcase_email
   has_secure_password
 
   validates :username, uniqueness: true
@@ -15,9 +14,6 @@ class User < ApplicationRecord
     end
   end
     
-  private
-      
-  def downcase_email
-    self.email = self.email.downcase
-  end
+
+    
 end
