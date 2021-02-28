@@ -14,5 +14,16 @@ class UsersController < ApplicationController
       
   end
       
+  def show
+    redirect_if_not_logged_in
+    @user = current_user
+    @reviews = current_user.reviews
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:user, email, :password)
+  end
   
 end

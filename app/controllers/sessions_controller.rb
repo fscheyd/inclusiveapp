@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
     def new
-        if logged_in?
-          redirect_to user_path(current_user)
-        end
+        @user = User.new
     end
 
     def create
@@ -20,7 +18,7 @@ class SessionsController < ApplicationController
         else
           render json: { status: 401 }
         end
-      end
+    
     end
     
      
@@ -32,15 +30,14 @@ class SessionsController < ApplicationController
     def omniauth
         user = User.create_from_omniauth(auth)
         
-        if user,valid?
+        if user == valid?
             session[:user_id] = user.id
             redirect_to new_review_path
         else
             flash[:message] = user.errors.full_messages.join("")
             redirect_to businesses_path
         end
-    end
+    end 
 
-    
     
 end
