@@ -9,5 +9,7 @@ class Review < ApplicationRecord
     validates :accesibility_features, presence: true
     #full crud functionality
 
+    scope :rank_by_accesibility_score, -> { order(accesibility_score: :desc) }
+
     
 end
