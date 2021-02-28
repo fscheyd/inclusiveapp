@@ -1,30 +1,28 @@
 class SessionsController < ApplicationController
+    def home
+    end
+    
     def new
-        @user = User.new
+        @session = Session.new
     end
 
     def create
-        user = User
-            .find_by(email: params["user"]["email"])
-            .try(:authenticate, params["user"]["password"])
-    
-        if user
-          session[:user_id] = user.id
-          render json: {
-            status: :created,
-            logged_in: true,
-            user: user
-          }
+        @session = Session.new(params[:session])
+        if @session.save
+            flash[:success] = "Session successfully created"
+            redirect_to login_path(@session)
         else
-          render json: { status: 401 }
+            flash[:error] = "Something went wrong"
+            render :new
         end
-    
     end
+    
+
     
      
     def destroy
         session.delete(:user_id)
-        redirect_to '/login'
+        redirect_to login_path
     end
 
     def omniauth
@@ -39,5 +37,4 @@ class SessionsController < ApplicationController
         end
     end 
 
-    
 end
