@@ -1,40 +1,45 @@
 class SessionsController < ApplicationController
+
     def home
     end
-    
-    def new
-        @session = Session.new
+
+    def destroy
+        session.clear
+        redirect_to root_path
     end
 
     def create
-        @session = Session.new(params[:session])
-        if @session.save
-            flash[:success] = "Session successfully created"
-            redirect_to login_path(@session)
-        else
-            flash[:error] = "Something went wrong"
-            render :new
-        end
-    end
-    
-
-    
-     
-    def destroy
-        session.delete(:user_id)
-        redirect_to login_path
-    end
-
-    def omniauth
-        user = User.create_from_omniauth(auth)
-        
-        if user.valid?
+        user = User.find_by(username: params[:user][:username])
+        if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
-            redirect_to new_review_path
-        else
-            flash[:message] = user.errors.full_messages.join("")
-            redirect_to businesses_path
+            redirect_to user_path(user)
+        else 
+            flash[:message] = "Incorrect credentials, please try again"
+            redirect_to "/login"
         end
-    end 
+    end
+
+    def google
+        #find or create a user using the attributes auth
+        user = User.find_or_create_by(username: auth['info']['nickname']) do |u|
+            u.username = auth['info']['nickname']
+            u.password = SecureRandom.hex(10)
+        end
+
+        if user.save
+          session[:user_id] = user.id
+          redirect_to user_path(user)
+        else 
+            flash[:message] = "Something went wrong, please try again!"
+            redirect_to '/'
+        end
+    end
+
+    private 
+
+    def auth
+        request.env['omniauth.auth']
+    end
+    
 
 end
