@@ -8,4 +8,6 @@ class Review < ApplicationRecord
     validates_numericality_of :accesibility_rating, :less_than_or_equal_to => 5
     validates :accesibility_features, presence: true
     #full crud functionality
+
+    
 end
