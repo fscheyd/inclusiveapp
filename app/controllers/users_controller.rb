@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @user = User.all
+  
   end
   
   def show
@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
       if @user.save
-        session[:user_id] = @user.id
-        redirect_to user_path(@user.id)
+        session[:user_id] = @user_id
+        redirect_to user_path(@user)
       else
         flash[:error] = "Something went wrong."
         render :new

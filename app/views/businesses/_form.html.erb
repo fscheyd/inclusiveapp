@@ -1,0 +1,13 @@
+<%= form_for @business do |f| %>
+    <%= business_header(f) %>
+    <%= f.label :business_name %>
+    <%= f.text_field :business_name %><br>
+    <%= f.label :business_type %>
+    <%= f.text_field :business_type %><br>
+    <%= f.label :business_address %>
+    <%= f.text_field :business_address %><br>
+    <%= f.label :business_phone_number %>
+    <%= f.text_field :usiness_phone_number %><br>
+    <%= f.submit %>
+  
+  <% end %>

@@ -1,17 +1,20 @@
 class SessionsController < ApplicationController
 
     def home
-        @user = User.new
-
     end
 
     def new
     end
 
     def create
-        return redirect_to(controller: 'sessions', action: 'new') if !params[:name] || params[:name].empty?
-        session[:username] = params[:username]
-        redirect_to user_path(current_user)
+        user = User.find_by_username(params[:username])
+        if user && user.authenticate(params[:password]) # authenticate method comes from has_secure_password
+          session[:user_id] = user.id # logs in a user
+          redirect_to user_path(user)
+        else
+          flash[:message] = "Invalid credentials, please try again!"
+          redirect_to '/login'
+        end
     end
     
     def destroy
