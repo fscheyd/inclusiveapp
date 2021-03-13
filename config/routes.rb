@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'sessions/home'
+  root 'sessions#home'
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
@@ -9,15 +9,16 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  match '/auth/gmail/callback', to: 'sessions#omniauth', via: [:get, :post]
   
   resources :businesses do
     resources :reviews, only: [:index, :new, :create]
   end
 
-  resources :users do
-    resources :reviews, only: [:index, :new, :create, :edit, :destroy]
+  resources :users 
 
-  end
+  resources :reviews
 
 end
   
