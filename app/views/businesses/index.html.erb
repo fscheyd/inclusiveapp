@@ -1,0 +1,15 @@
+#list of businesses and option to order by ranking using scope method
+
+<h1>All Busnisses </h1>
+
+<h4> Search by Business: </h4>
+<%= form_tag(businesses_path, method: :get) do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag ("Search") %>
+<% end %>
+<% @businessess.each do |business| %>
+    <ul>
+        <li><%= link_to business.name, business] %></li>
+        <p>
+    </ul>
+<% end %>

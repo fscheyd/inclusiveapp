@@ -1,8 +1,9 @@
 <h1>INCLUSIVE</h1>
 <h2> Log in or Sign up to Review local businesses for Disability Accesibility!</h2>
-<h3> <%= link_to "Log in", login_path%></h3>
+<h3> <%= link_to "Log in", login_path%>
+<%= link_to 'Sign in with Gmail', '/auth/gmail'%></h3>
 <div>
-<%= form_for @user, controller: 'users', action 'create' do |f| %>
+<%= form_with(model: @user, url: '/signup', local: true) do |f| %>
     <%= f.label :username %><br>
     <%= f.text_field :username %><br><br>
     <%= f.label :email %><br>
