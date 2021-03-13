@@ -5,7 +5,13 @@ class ReviewsController < ApplicationController
     end
     
     def new
-        @review = Review.new
+       if params[:business_id] && @business = Business.find_by_id(params[:business_id])
+            @review = @business.reviews.new
+       else
+            @businesses = Business.business_list
+            @review = Review.new
+       end
+       
     end
 
 

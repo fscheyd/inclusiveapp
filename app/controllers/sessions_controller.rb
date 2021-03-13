@@ -1,34 +1,28 @@
 class SessionsController < ApplicationController
 
     def home
+        @user = User.new
+
     end
 
     def new
-        @session = Session.new
-        if logged_in?
-            redirect_to user_path(current_user)
-        end
-    end
-
-    def destroy
-        session.clear
-        redirect_to root_path
     end
 
     def create
-        @session = Session.new(params[:session])
-        if @session.save
-          flash[:success] = "Session successfully created"
-          redirect_to login_path(@session)
-        else
-          flash[:error] = "Something went wrong"
-          render :new
-        end
+        return redirect_to(controller: 'sessions', action: 'new') if !params[:name] || params[:name].empty?
+        session[:username] = params[:username]
+        redirect_to user_path(current_user)
+    end
+    
+    def destroy
+        session.delete :name
+        redirect_to login_path
     end
 
-    def google
+    def omniauth
         user = User.find_or_create_by(username: auth['info']['nickname']) do |u|
             u.username = auth['info']['nickname']
+            u.email = auth['info']
             u.password = SecureRandom.hex(10)
         end
 
