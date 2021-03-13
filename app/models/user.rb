@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :reveiws
+  has_many :reviews
   has_many :businesses, through: :reviews
   has_secure_password
 
