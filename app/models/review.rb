@@ -7,7 +7,7 @@ class Review < ApplicationRecord
     validates :review_body, length: { in: 3..100 }
     validates_numericality_of :accesibility_rating, :less_than_or_equal_to => 5
     validates :accesibility_features, presence: true
-    #full crud functionality
+    
 
     scope :rank_by_accesibility_score, -> { order(accesibility_score: :desc) }
 

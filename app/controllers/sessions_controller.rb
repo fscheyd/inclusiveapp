@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
 
     def create
         user = User.find_by_username(params[:username])
-        if user && user.authenticate(params[:password]) # authenticate method comes from has_secure_password
-          session[:user_id] = user.id # logs in a user
-          redirect_to user_path(user)
+        if user && user.authenticate(params[:password])
+          session[:user_id] = user.id
+          redirect_to user_path(@user)
         else
           flash[:message] = "Invalid credentials, please try again!"
           redirect_to '/login'
