@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
-  match '/auth/gmail/callback', to: 'sessions#omniauth', via: [:get, :post]
+  match '/auth/:provider/callback', to: 'sessions#omniauth', via: [:get, :post]
   
   resources :businesses do
     resources :reviews, only: [:index, :new, :create]
