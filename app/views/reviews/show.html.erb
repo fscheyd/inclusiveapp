@@ -5,7 +5,7 @@
 <h1><%= @review.business.business_name %></h1>
 
 <div>
-    <h2>Review Title: <%= @review.review_title %>
+  <h2>Review Title: <%= @review.review_title %>
   <h3>By: <%= @review.username %></h3>
   
   <li><%= @review.accesibility_rating %></li>
@@ -16,6 +16,6 @@
 
 
 <% if current_user == @review.user %>
-    <%= link_to "Edit Review", edit_review_path(@review) %> |
-    <%= link_to "Delete", @question, method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to "Edit Review", edit_review_path(@review) %> |
+  <%= link_to "Delete", @question, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>

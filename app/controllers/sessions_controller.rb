@@ -1,41 +1,39 @@
 class SessionsController < ApplicationController
+    skip_before_action :require_login, only: [:home, :new, :create]
 
     def home
-        @user = User.new
+    end
+
+    def destroy
+        session.delete(:user_id)
+        redirect_to root_path
     end
 
     def new
     end
 
     def create
-        user = User.find_by_username(params[:user][:username])
+        user = User.find_by_username(params[:username])
         #byebug
-        if user && user.authenticate(params[:user][:password])
+        if user && user.authenticate(params[:password])
           session[:user_id] = user.id
           redirect_to user_path(user)
         else
-          render 'new'
+            flash[:message] = "Invalid entry. Please try again!"
+            redirect_to '/login'
         end
     end
     
-    def destroy
-        session.delete :name
-        redirect_to login_path
-    end
+
 
     def omniauth
-        user = User.find_or_create_by(username: auth['info']['nickname']) do |u|
-            u.username = auth['info']['nickname']
-            u.email = auth['info']
-            u.password = SecureRandom.hex(10)
-        end
-
-        if user.save
-          session[:user_id] = user.id
-          redirect_to user_path(user)
-        else 
-            flash[:message] = "Something went wrong, please try again!"
-            redirect_to '/'
+        user = User.create_from_omniauth(auth)
+        if user.valid?
+            session[:user_id] = user.id
+            redirect_to new_review_path
+        else
+            flash[:message] = user.errors.full_messages.join("")
+            redirect_to reviews_path
         end
     end
 

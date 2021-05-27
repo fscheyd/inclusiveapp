@@ -1,12 +1,12 @@
 class User < ApplicationRecord
   has_many :reviews
   has_many :businesses, through: :reviews
-  
-
-  validates :username, uniqueness: true
-  validates :email, presence: true
 
   has_secure_password
+  
+  validates :email, presence: true
+
+  
 
   def self.create_from_omniauth(auth)
     User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
