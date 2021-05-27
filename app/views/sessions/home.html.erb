@@ -2,9 +2,18 @@
 <h2> Log in or Sign up to Review local businesses for Disability Accesibility!</h2>
 <h3> <%= link_to "Log in", login_path%>
 <%= link_to 'Sign in with Gmail', '/auth/google_oauth2'%></h3>
-<h4> If you're new, create an account here! </h4> 
+<% if @user && @user.errors.any? %>
+
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+    </ul>
+<% end %>
+ 
 <div>
-<%= form_with(model: @user, url: '/signup', local: true) do |f| %>
+
+<%= form_with(model: User.new) do |f| %>
     <%= f.label :username %><br>
     <%= f.text_field :username %><br><br>
     <%= f.label :email %><br>
