@@ -1,20 +1,17 @@
 <h1>Login Here!</h1>
-<% if @user && @user.errors.any? %>
-
+<% if @errors %>
     <ul>
-    <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-    <% end %>
+      <li>
+        <%= @errors %>
+      </li>
     </ul>
+  <% end %>
+<div>
+<%= form_for @user, url: "/login" do |f| %>
+    <%= f.label :username %><br>
+    <%= f.text_field :username %><br><br>
+    <%= f.label :password%><br>
+    <%= f.password_field :password%><br><br>
+    <%= f.submit "create"%>
 <% end %>
-<%= form_for :user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %><br><br>
-  <p>
-  <%= f.label :password %>
-  <%= f.password_field :password %><br><br>
-  <p>
-  <%= f.submit "login" %>
-
-  
-<% end %>
+</div>
