@@ -1,6 +1,8 @@
 #will show email and username.
 #will list recently reviewed businesses
 #will have link to new review form and new business form.
+<h3> <%= link_to "Businesses", business_path%>
+
 <h1><center> All of <%= @user.username.capitalize %>'s Reviews! </center></h1>
 
 <% @user.reviews.each do |review| %>
@@ -17,4 +19,4 @@
         ----------------------------------------------
     </ul>
 <% end %>
-
+<h3> <%= link_to "New Review", new_review_path%>
