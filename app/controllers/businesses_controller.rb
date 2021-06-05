@@ -1,4 +1,5 @@
 class BusinessesController < ApplicationController
+    
     def index
         if params[:search]
             @user = User.search(params[:search])
