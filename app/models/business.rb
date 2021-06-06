@@ -11,10 +11,8 @@ class Business < ApplicationRecord
         @businesses = []
 
         Business.all.each do |business|
-        @business_info = [business.business_name, business.id]
-        
-        @businesses << @business_info
-
+            @business_info = [business.business_name, business.id]
+            @businesses << @business_info
         end
 
         @businesses

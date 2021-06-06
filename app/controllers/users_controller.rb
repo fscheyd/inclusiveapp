@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    byebug
     redirect_if_not_logged_in
     @user = current_user
     @reviews = current_user.reviews

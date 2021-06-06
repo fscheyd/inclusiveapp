@@ -7,9 +7,11 @@
     <%= text_field_tag(:search, params[:search]) %>
     <%= submit_tag ("Search") %>
 <% end %>
-<% @businessess.each do |business| %>
+<% @businesses.each do |business| %>
     <ul>
-        <li><%= link_to business.name, business] %></li>
+        <li><%= link_to business.name, business %></li>
         <p>
     </ul>
 <% end %>
+<h3>Enter a <%= link_to "New Business", new_business_path%> here! </h3>
+<h3> Return to <%= link_to "User Page.", login_path %> </h3>

@@ -1,6 +1,6 @@
 <h1>INCLUSIVE</h1>
 <h2> Log in or Sign up to Review local businesses for Disability Accesibility!</h2>
-<% if @user.errors.any? %>
+<% if @user && @user.errors.any? %>
     <ul>
     <% @user.errors.full_messages.each do |message| %>
       <li><%= message %></li>

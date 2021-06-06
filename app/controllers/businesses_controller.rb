@@ -1,16 +1,8 @@
 class BusinessesController < ApplicationController
     
-    def index
-        if params[:search]
-            @user = User.search(params[:search])
-        end
-        @businesses = business.all
-    end
-    
-    
-    
     def new
         @business = Business.new
+        @business.reviews.build
     end
 
     def create
@@ -23,14 +15,28 @@ class BusinessesController < ApplicationController
 
     end
 
+    def index
+        if params[:search]
+            @user = User.search(params[:search])
+        end
+        @businesses = Business.all
+    end
+
     def show
-        @businesses = Business.find(params[:id])
+        
+        @businesses = Business.find_by(params[:id])
+        @review = Review.new
+    
+        if @business.nil?
+            redirect_to new_business_path
+        end
     end
 
     private
 
     def business_params
-        params.require(bsuiness).permit(business)
+        #byebug
+        params.require(@business).permit(:business_name, :business_type, :business_address, :business_phone_number)
     end
  
 
