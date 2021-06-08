@@ -1,7 +1,5 @@
-#will show email and username.
-#will list recently reviewed businesses
-#will have link to new review form and new business form.
-<h3> <%= link_to "Businesses", business_path%>
+
+<h3> <%= link_to "Businesses", business_path%></h3>
 
 <h1><center> All of <%= @user.username.capitalize %>'s Reviews! </center></h1>
 
@@ -19,4 +17,6 @@
         ----------------------------------------------
     </ul>
 <% end %>
-<h3> <%= link_to "New Review", new_user_review_path(current_user )%>
+<h3> <%= link_to "New Review", new_user_review_path(current_user) %></h3>
+
+<div><h4> <%= link_to "Log out", logout_path %> </h4></div>
