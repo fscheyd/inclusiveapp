@@ -6,16 +6,19 @@ class BusinessesController < ApplicationController
     end
 
     def create
+        
         @business = Business.new(business_params)
         if @business.save
             redirect_to business_path(@business)
         else
+            byebug
             render :new
         end
 
     end
 
     def index
+        
         if params[:search]
             @user = User.search(params[:search])
         end
@@ -36,7 +39,7 @@ class BusinessesController < ApplicationController
 
     def business_params
         #byebug
-        params.require(@business).permit(:business_name, :business_type, :business_address, :business_phone_number)
+        params.require(:business).permit(:business_name, :business_type, :business_address, :business_phone_number)
     end
  
 
