@@ -9,8 +9,11 @@
 <% end %>
 <% @businesses.each do |business| %>
     <ul>
-        <li><%= link_to business.name, business %></li>
-        <p>
+    Name: <%= link_to business.business_name, business %><br>
+    Type: <%= business.business_type %><br>
+    Address: <%= business.business_address %><br>
+    Phone Number: <%= business.business_phone_number %><br>
+        
     </ul>
 <% end %>
 <h3>Enter a <%= link_to "New Business", new_business_path%> here! </h3>

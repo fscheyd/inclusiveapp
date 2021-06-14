@@ -9,7 +9,7 @@ class BusinessesController < ApplicationController
         
         @business = Business.new(business_params)
         if @business.save
-            redirect_to business_path(@business)
+            redirect_to business_path(@business[:id])
         else
             byebug
             render :new

@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
             render "sessions/new"
         end
     end
+
     
     def google
         #find or create a user using the attributes auth
