@@ -9,7 +9,8 @@
 <% end %>
 <% @businesses.each do |business| %>
     <ul>
-    Name: <%= link_to business.business_name, business %><br>
+     Name: <%= link_to business.business_name, business_path(business) %><br>
+
     Type: <%= business.business_type %><br>
     Address: <%= business.business_address %><br>
     Phone Number: <%= business.business_phone_number %><br>
@@ -17,4 +18,5 @@
     </ul>
 <% end %>
 <h3>Enter a <%= link_to "New Business", new_business_path%> here! </h3>
+Return to your <%= link_to "Home Page.", '/users/[:id]' %>
 <h3> Return to <%= link_to "User Page.", login_path %> </h3>

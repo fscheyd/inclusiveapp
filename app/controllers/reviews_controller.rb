@@ -5,12 +5,14 @@ class ReviewsController < ApplicationController
     end
     
     def new
-       if params[:business_id] && @business = Business.find_by_id(params[:business_id])
-            @review = @business.reviews.new
-       else
-            @businesses = Business.business_list
-            @review = Review.new
-       end
+        @business = Business.find_by(id: params[:business_id])
+        @review = @business.reviews.build()
+    #    if params[:business_id] && @business = Business.find_by_id(params[:business_id])
+    #         @review = @business.reviews.new
+    #    else
+    #         @businesses = Business.business_list
+    #         @review = Review.new
+    #    end
        
     end
 
@@ -26,6 +28,8 @@ class ReviewsController < ApplicationController
         else
             render :new
         end
+        # after creating, reroute to the business show page, but make sure 
+        # you have the show page, also displaying an index of that specific businesses reivews 
     end
 
 

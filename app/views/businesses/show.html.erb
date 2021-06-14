@@ -1,16 +1,14 @@
-#displays submitted business
-#shows review form and link to list of businesses
-# <h1><center> All of the Available Businesses to Review!</center></h1>
+<h1><%= @business.business_name %> </h1>
+<div><h4>
+<p> <h1><%= @business.business_type %> 
+<h1><%= @business.business_address %> 
+<h1><%= @business.business_phone_number %></h4<></div>
 
-# <% @business.each do |business| %>
-#     <ul>
-#         <li>
-#             <h3><%= business_name%></h3>
-#             <p>
-#             <%= business.business_name %>
-#             <p>
-#             <small><%= business.created_at %></small>
-#         </li>
-#         ----------------------------------------------
-#     </ul>
-# <% end %>
+<% @business.reviews.each do |r| %>
+<%= r.review_title %>
+<% end %>
+
+<div><h4><%= link_to "Review this business.", new_business_review_path(@business)%>
+<p>
+<%= link_to "New Review", new_user_review_path(current_user) %></h3>
+Return to your <%= link_to "Home Page.", '/users/[:id]' %> </h4></div>

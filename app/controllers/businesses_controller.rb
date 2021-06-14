@@ -27,12 +27,13 @@ class BusinessesController < ApplicationController
 
     def show
         
-        @businesses = Business.find_by(params[:id])
+        @business = Business.find_by(id: params[:id])
         @review = Review.new
     
-        if @business.nil?
-            redirect_to new_business_path
-        end
+        # if @business.nil?
+        #     byebug 
+        #     redirect_to new_business_path
+        # end
     end
 
     private
