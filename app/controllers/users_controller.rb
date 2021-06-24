@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    redirect_if_not_logged_in
+    # redirect_if_not_logged_in
     @user = current_user
     @reviews = current_user.reviews
   end

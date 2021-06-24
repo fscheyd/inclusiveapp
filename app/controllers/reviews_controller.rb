@@ -7,12 +7,12 @@ class ReviewsController < ApplicationController
     def new
         @business = Business.find_by(id: params[:business_id])
         @review = @business.reviews.build()
-    #    if params[:business_id] && @business = Business.find_by_id(params[:business_id])
-    #         @review = @business.reviews.new
-    #    else
-    #         @businesses = Business.business_list
-    #         @review = Review.new
-    #    end
+        if params[:business_id] && @business = Business.find_by_id(params[:business_id])
+             @review = @business.reviews.new
+        else
+             @businesses = Business.business_list
+             @review = Review.new
+        end
        
     end
 
