@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     include ReviewHelper
     # gives access to the views
     helper_method :current_user, :logged_in?
-    before_action :require_login
+    # before_action :require_login
     def require_login
         unless logged_in?
           flash[:error] = "You must be logged in to access this section"

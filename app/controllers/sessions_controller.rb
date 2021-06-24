@@ -1,12 +1,13 @@
 class SessionsController < ApplicationController
+    
     def home
         @user = User.new
     end
     
     def new 
-        byebug
+       
         @user = User.new
-        render "sessions/new"
+        render 'sessions/new'
     end 
     
     def destroy
