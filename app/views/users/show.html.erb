@@ -6,13 +6,9 @@
 <% @user.reviews.each do |review| %>
     <ul>
         <li>
-            <h3><%= review.title%></h3>
-            <p>
-            <%= review.business.name%>
-            <p>
-            <%= review.content %>
-            <p>
-            <small><%= review.created_at %></small>
+            <h3><%= @review_title %></h3>
+            
+            <small><%= @review_created_at %></small>
         </li>
         ----------------------------------------------
     </ul>
