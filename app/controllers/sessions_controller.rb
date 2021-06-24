@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
     
     def google
         #find or create a user using the attributes auth
-        user = User.find_or_create_by(username: auth['info']['nickname']) do |u|
+        user = User.find_or_create_by(username: auth['info']['name']) do |u|
             u.username = auth['info']['name']
             u.email = auth['info']['email']
             u.password = SecureRandom.hex(10)

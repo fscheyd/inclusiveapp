@@ -3,16 +3,17 @@
 
 <h1><center> All of <%= @user.username.capitalize %>'s Reviews! </center></h1>
 
-<% @user.reviews.each do |review| %>
+<% @review.businesses.each do |r| %>
     <ul>
         <li>
-            <h3><%= @review_title %></h3>
-            
-            <small><%= @review_created_at %></small>
+        <%= hidden_field :user_id, value: current_user.id %>
+        <%= hidden_field :business_id, value: business.id %>  
+           Title: <h3><%= review.review_title %></h3>
+            <br>
+            Review Created: <small><%= review.review_created_at %></small>
         </li>
         ----------------------------------------------
     </ul>
 <% end %>
-<h3> <%= link_to "New Review", new_user_review_path(current_user) %></h3>
 
 <div><h4> <%= link_to "Log out", logout_path %> </h4></div>
