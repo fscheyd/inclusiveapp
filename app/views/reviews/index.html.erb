@@ -1,9 +1,7 @@
-# Will have busnisses listed with option to order by highest ranking
 <h1><center>All Reviews</center></h1>
-
-
 <ul>
+
 <% @reviews.each do |review| %>
-  <li><h3><%= link_to review.business.name , review.business %> || <%= link_to review.title, review %></h3></li>
+  <li><h3><%= link_to review.business.business_name, review.business %> || <%= link_to review.review_title, review %></h3></li>
 <% end %>
 </ul>

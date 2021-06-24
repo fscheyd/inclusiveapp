@@ -13,14 +13,14 @@ Rails.application.routes.draw do
   
   
   resources :businesses
-
+  resources :reviews, only: [:show, :edit, :update, :destroy]
   resources :businesses do
     resources :reviews, only: [:index, :new, :create]
   end
-  resources :reviews, only: [:show, :index, :new, :create, :edit, :destroy]
+  
   
   resources :users do
-    resources :reviews, only: [:index, :new, :create, :edit, :destroy]
+    resources :reviews, only: [:index, :new, :create]
   end
 end
 

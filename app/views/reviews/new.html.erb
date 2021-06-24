@@ -1,6 +1,6 @@
 Enter your review here: 
 
-<%= form_for @review do |f| %> 
+<%= form_for [@business, @review] do |f| %> 
   
   <%= f.hidden_field :business_id, value: @business.id %>
     <%= f.hidden_field :user_id, value: current_user.id %> 

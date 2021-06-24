@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
 
     def index
-        @review = Review.all
+        @business = Business.find_by(id: params[:business_id])
+        @reviews = @business.reviews
     end
     
     def new
@@ -34,7 +35,7 @@ class ReviewsController < ApplicationController
         if @review.errors.any? 
             render :new
         else
-            redirect_to review_path(@business)
+            redirect_to review_path(@review)
 
         end 
     end
@@ -54,8 +55,8 @@ class ReviewsController < ApplicationController
 
     def destroy
         review = Review.find(params[:id])
-        review.destroy(review_params)
-        redirect_to review path
+        review.destroy
+        redirect_to businesses_path
     end
 
     private
