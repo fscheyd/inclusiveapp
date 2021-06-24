@@ -31,14 +31,12 @@ class ReviewsController < ApplicationController
         @business = Business.find_by(id: review_params[:business_id])
         @review = @business.reviews.create(review_params) 
         
-        if @review.errors.any?
-            byebug 
+        if @review.errors.any? 
             render :new
         else
-            redirect_to businesses_path
-        end
-        # after creating, reroute to the business show page, but make sure 
-        # you have the show page, also displaying an index of that specific businesses reivews 
+            redirect_to review_path(@business)
+
+        end 
     end
 
     
