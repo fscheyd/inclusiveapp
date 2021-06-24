@@ -6,7 +6,7 @@ class BusinessesController < ApplicationController
     end
 
     def create
-        
+        byebug 
         @business = Business.new(business_params)
         if @business.save
             redirect_to business_path(@business[:id])
@@ -27,8 +27,9 @@ class BusinessesController < ApplicationController
 
     def show
         
+        
         @business = Business.find_by(id: params[:id])
-        @review = Review.new
+        # @review = Review.new
     
         # if @business.nil?
         #     byebug 
